@@ -8,11 +8,11 @@
         "responses": ["Amakuru ni meza, urakoze!"]
     },
     "time": {
-        "patterns": ["saa zingahe", "igihe ni iki"],
-        "responses": ["Saa ni make zibiri z’umugoroba."]
+        "patterns": ["saa zingahe"],
+        "responses": ["Saa mbiri z'umugoroba"]
     },
     "book": {
-        "patterns": ["gitabo", "ni iki gitabo"],
+        "patterns": ["iki gitabo ni iki"],
         "responses": ["Iki ni gitabo cy'ubuhanga."]
     },
     "thanks": {

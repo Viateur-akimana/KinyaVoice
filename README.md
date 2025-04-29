@@ -1,94 +1,113 @@
 # Kinyarwanda Voice Assistant
 
-A mini voice assistant for Kinyarwanda language, built for the Intelligent Robotics course (April 2025).
+An interactive voice assistant for Kinyarwanda language that can transcribe speech, respond to queries, and generate spoken responses.
 
----
+## Features
 
-## 🧠 Overview
+- **Speech Recognition**: Transcribes Kinyarwanda speech to text using KinyaWhisper
+- **Natural Language Processing**: Pattern-matching and intent-based response system
+- **Text-to-Speech**: Generates natural-sounding Kinyarwanda speech from text
+- **Web Interface**: Easy-to-use Gradio interface for interaction
 
-This project implements a Kinyarwanda voice assistant capable of:
+## Project Structure
 
-- 🗣️ Transcribing Kinyarwanda speech to text using `benax-rw/KinyaWhisper` (Automatic Speech Recognition).
-- 🤖 Understanding queries using an intent-based NLP engine.
-- 🔊 Responding with synthesized speech using `Coqui TTS`.
+```
+kinyarwanda-voice-assistant/
+├── app.py                  # Main Gradio web interface
+├── main.py                 # Command-line application
+├── asr/
+│   └── transcribe.py       # Speech recognition module
+├── nlp/
+│   ├── qa_engine.py        # Question answering system
+│   └── intents.json        # Intent patterns and responses
+├── tts/
+│   └── speech_synth.py     # Text-to-speech engine
+├── Inference/
+│   └── kinyatts/           # TTS model and utilities
+├── test_audio/             # Sample audio files
+└── outputs/                # Generated audio outputs
+```
 
----
-
-## Setup
+## Installation
 
 1. Clone the repository:
+   ```bash
+   git clone https://github.com/yourusername/kinyarwanda-voice-assistant.git
+   cd kinyarwanda-voice-assistant
+   ```
+
+2. Create and activate a virtual environment:
+   ```bash
+   python -m venv venv
+   source venv/bin/activate  # On Windows: venv\Scripts\activate
+   ```
+
+3. Install dependencies:
+   ```bash
+   pip install -r requirements.txt
+   ```
+
+4. Set up the TTS model:
+   - Download the TTS model file and place it at the correct location
+   - Verify the paths in `tts/speech_synth.py`
+
+## Usage
+
+### Web Interface
+
+Run the Gradio web interface:
 
 ```bash
-git clone https://github.com/yourusername/kinyarwanda-voice-assistant.git
-cd kinyarwanda-voice-assistant
+python app.py
 ```
 
-2. Install dependencies:
+This will launch a web interface where you can:
+- Speak into your microphone in Kinyarwanda
+- See the transcription of your speech
+- Read the assistant's response
+- Hear the spoken response
 
-```bash
-pip install -r requirements.txt
-```
+### Command-line Interface
 
-3. Set up Hugging Face token in `.env`:
-
-```
-HUGGINGFACE_HUB_TOKEN=your_token
-```
-
-4. Install `ffmpeg` for audio conversion:
-
-```bash
-sudo apt-get install ffmpeg
-```
-
-5. Run the assistant:
+You can also use the system from the command line:
 
 ```bash
 python main.py
 ```
 
-## Files
+This will:
+1. Transcribe audio from a predefined file
+2. Process the transcription and generate a response
+3. Convert the response to speech
 
-* `asr/transcribe.py`: Speech-to-text using KinyaWhisper
-* `nlp/qa_engine.py`: NLP for question-answer matching
-* `nlp/intents.json`: QA pairs for NLP
-* `tts/speech_synth.py`: Text-to-speech using Coqui TTS
-* `main.py`: Main script to run the assistant
-* `test_audio/`: 5 Kinyarwanda audio files (`audio1.wav` to `audio5.wav`)
-* `transcriptions.txt`: Transcriptions of audio files
-* `requirements.txt`: Python dependencies
+## Components
 
-## Usage
+### Speech Recognition (ASR)
 
-* Place Kinyarwanda audio files in `test_audio/` (WAV or MP3, 16 kHz mono preferred)
-* Run `main.py` to process audio files, generate responses, and save spoken outputs
-* Check `transcriptions.txt` for transcriptions and `response_*.wav` for TTS outputs
+Uses the KinyaWhisper model for accurate Kinyarwanda speech recognition.
 
-## Features
+### Natural Language Processing (NLP)
 
-* **Automatic Speech Recognition (ASR)**: Accurately transcribes Kinyarwanda speech using a fine-tuned Whisper model
-* **Natural Language Processing (NLP)**: Identifies intents from transcribed text and matches to appropriate responses
-* **Text-to-Speech (TTS)**: Converts text responses to natural-sounding Kinyarwanda speech
+Pattern matching with fuzzy matching capabilities to understand user input and generate appropriate responses.
 
-## Limitations
+### Text-to-Speech (TTS)
 
-* The `xtts_v2` TTS model may not fully support Kinyarwanda pronunciation due to limited training data
-* Audio files must be clear and in Kinyarwanda for accurate transcription
-* The NLP component relies on predefined intents and may not handle complex or out-of-scope queries
+Uses a custom TTS model trained specifically for Kinyarwanda to generate natural-sounding speech.
 
-## Future Improvements
+## Requirements
 
-* Implement real-time audio processing for live conversations
-* Expand the intent database with more Kinyarwanda phrases and responses
-* Fine-tune TTS models specifically for Kinyarwanda pronunciation
-* Add support for multiple languages (Kinyarwanda-English code-switching)
-
+- Python 3.8 or higher
+- PyTorch
+- Transformers
+- Gradio
+- Torchaudio
+- Additional dependencies in requirements.txt
 
 ## License
 
-[MIT License](LICENSE)
+[Specify your license here]
 
-## Acknowledgments
+## Credits
 
-* `benax-rw/KinyaWhisper` for the Kinyarwanda ASR model
-* Coqui TTS for text-to-speech capabilities
+- KinyaWhisper ASR model by [benax-rw](https://huggingface.co/benax-rw/KinyaWhisper)
+- [Add other credits as appropriate]
