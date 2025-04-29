@@ -1,0 +1,26 @@
+{
+    "greeting": {
+        "patterns": ["muraho", "mwaramutse"],
+        "responses": ["Muraho neza!", "Mwaramutse neza!"]
+    },
+    "news": {
+        "patterns": ["amakuru", "amakuru yawe"],
+        "responses": ["Amakuru ni meza, urakoze!"]
+    },
+    "time": {
+        "patterns": ["saa zingahe", "igihe ni iki"],
+        "responses": ["Saa ni make zibiri z’umugoroba."]
+    },
+    "book": {
+        "patterns": ["gitabo", "ni iki gitabo"],
+        "responses": ["Iki ni gitabo cy'ubuhanga."]
+    },
+    "thanks": {
+        "patterns": ["urakoze", "murakoze"],
+        "responses": ["Ntakibazo, urakoze nawe!"]
+    },
+    "unknown": {
+        "patterns": [],
+        "responses": ["Sinzi igisubizo cy'icyo kibazo."]
+    }
+}

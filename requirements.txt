@@ -1,0 +1,31 @@
+# Core ASR/NLP
+transformers==4.51.3
+torch==2.7.0
+torchaudio==2.7.0
+fuzzywuzzy==0.18.0
+python-Levenshtein==0.25.0
+
+# Audio Processing
+sounddevice==0.4.6
+pydub==0.25.1
+librosa==0.10.1
+numpy>=1.22
+scipy==1.13.0
+
+# Text-to-Speech
+coqui-tts==0.26.0
+
+# Web Interface
+gradio==5.27.1
+uvicorn==0.34.2
+fastapi==0.115.12
+
+# Utilities
+python-dotenv==1.0.0
+tqdm==4.67.1
+requests==2.32.3
+pandas==2.2.3
+huggingface-hub==0.30.2
+
+# Testing
+pytest==7.3.0
