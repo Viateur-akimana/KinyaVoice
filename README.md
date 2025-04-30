@@ -1,19 +1,21 @@
 # Kinyarwanda Voice Assistant
 
-An interactive voice assistant for Kinyarwanda language that can transcribe speech, respond to queries, and generate spoken responses.
+A mini voice assistant for Kinyarwanda language, built for the Intelligent Robotics course (April 2025). This project implements a complete voice interaction pipeline with Automatic Speech Recognition (ASR), Natural Language Processing (NLP), and Text-to-Speech (TTS) capabilities.
 
-## Features
+## 🚀 Features
 
-- **Speech Recognition**: Transcribes Kinyarwanda speech to text using KinyaWhisper
-- **Natural Language Processing**: Pattern-matching and intent-based response system
-- **Text-to-Speech**: Generates natural-sounding Kinyarwanda speech from text
-- **Web Interface**: Easy-to-use Gradio interface for interaction
+- **🗣️ Speech Recognition**: Transcribes Kinyarwanda speech to text using `benax-rw/KinyaWhisper` (ASR)
+- **🤖 NLP Processing**: Understands queries using intent-based pattern matching with fuzzy matching capabilities
+- **🔊 Speech Synthesis**: Generates natural-sounding Kinyarwanda speech using custom TTS models
+- **🌐 Web Interface**: User-friendly Gradio interface for interactive conversations
+- **💻 CLI Support**: Command-line interface for batch processing of audio files
 
-## Project Structure
+## 📂 Project Structure
+
 
 ```
 kinyarwanda-voice-assistant/
-├── app.py                  # Main Gradio web interface
+├── gradio_app.py                  # Main Gradio web interface
 ├── main.py                 # Command-line application
 ├── asr/
 │   └── transcribe.py       # Speech recognition module
@@ -25,14 +27,14 @@ kinyarwanda-voice-assistant/
 ├── Inference/
 │   └── kinyatts/           # TTS model and utilities
 ├── test_audio/             # Sample audio files
-└── outputs/                # Generated audio outputs
+└── transcription_output/                # Generated audio outputs
 ```
 
 ## Installation
 
 1. Clone the repository:
    ```bash
-   git clone https://github.com/yourusername/kinyarwanda-voice-assistant.git
+   git clone https://github.com/Viateur-akimana/KinyaVoice.git
    cd kinyarwanda-voice-assistant
    ```
 
@@ -53,23 +55,8 @@ kinyarwanda-voice-assistant/
 
 ## Usage
 
-### Web Interface
 
-Run the Gradio web interface:
-
-```bash
-python app.py
-```
-
-This will launch a web interface where you can:
-- Speak into your microphone in Kinyarwanda
-- See the transcription of your speech
-- Read the assistant's response
-- Hear the spoken response
-
-### Command-line Interface
-
-You can also use the system from the command line:
+You can use the system from the command line:
 
 ```bash
 python main.py
@@ -92,7 +79,7 @@ Pattern matching with fuzzy matching capabilities to understand user input and g
 
 ### Text-to-Speech (TTS)
 
-Uses a custom TTS model trained specifically for Kinyarwanda to generate natural-sounding speech.
+Uses a custom KinyaTTS model trained specifically for Kinyarwanda to generate kinyarwanda-sounding speech.
 
 ## Requirements
 
@@ -103,11 +90,44 @@ Uses a custom TTS model trained specifically for Kinyarwanda to generate natural
 - Torchaudio
 - Additional dependencies in requirements.txt
 
-## License
+## ⚠️ Limitations
 
-[Specify your license here]
+### Speech Recognition (ASR)
+- 🎙️ Requires clear audio input (16kHz mono recommended)
+- 🌫️ Background noise may reduce transcription accuracy
+- 🔠 Struggles with rare Kinyarwanda dialects/accents
+
+### Natural Language Processing
+- 📜 Currently limited to predefined intents (expandable in `intents.json`)
+- 🔄 No contextual conversation memory
+- ❓ Handles only direct questions (no follow-up questions)
+
+### Speech Synthesis (TTS)
+- 🔊 Pronunciation may be imperfect for some Kinyarwanda words
+- 🐢 Slight latency in voice generation (~1-2 seconds)
+- 🎚️ Limited voice customization options
+
+## 🔮 Future Improvements
+
+### Core Technology
+- ⚡ Real-time conversation capabilities
+- 🎯 Fine-tuned TTS specifically for Kinyarwanda pronunciation
+- 🤖 Integration with robotic platforms (ROS, Arduino)
+
+### Language Capabilities
+- 🌍 Multilingual support (Kinyarwanda-English code-switching)
+- 📚 Expanded intent database (50+ Kinyarwanda phrases)
+- 💬 Advanced NLP for follow-up questions
+
+### User Experience
+- 🎨 Customizable voice characteristics
+
+### Performance
+- 🚀 GPU acceleration for faster inference
+- 🧠 Machine learning model optimizations
+- 📊 Detailed performance analytics
 
 ## Credits
 
 - KinyaWhisper ASR model by [benax-rw](https://huggingface.co/benax-rw/KinyaWhisper)
-- [Add other credits as appropriate]
+- KinyaTTS for text-to-speech capabilities

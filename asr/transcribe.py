@@ -4,7 +4,7 @@ from pathlib import Path
 import os
 
 AUDIO_DIR = "test_audio"
-AUDIO_FILE = "kinyarwanda.mp3"
+AUDIO_FILE = "kinyarwanda.wav"
 OUTPUT_DIR = "transcription_output"
 MODEL_NAME = "benax-rw/KinyaWhisper"
 
@@ -38,10 +38,9 @@ def load_model():
     )
     processor = WhisperProcessor.from_pretrained(MODEL_NAME)
     return model, processor
-
 def transcribe_audio(model, processor, audio_path):
     """
-    Handle audio processing and transcription.
+    Handle audio processing and transcription with sample rate conversion.
     
     Args:
         model: The WhisperForConditionalGeneration model.
@@ -52,19 +51,29 @@ def transcribe_audio(model, processor, audio_path):
         str: The transcribed text.
     """
     try:
+        # Load audio file
         waveform, sample_rate = torchaudio.load(audio_path)
         
         # Convert to mono if stereo
         if waveform.dim() > 1 and waveform.shape[0] > 1:
-            waveform = waveform.mean(dim=0)
+            waveform = waveform.mean(dim=0, keepdim=True)
+        
+        # Resample to 16kHz if needed
+        if sample_rate != 16000:
+            resampler = torchaudio.transforms.Resample(
+                orig_freq=sample_rate,
+                new_freq=16000
+            )
+            waveform = resampler(waveform)
+            sample_rate = 16000
             
         # Process with explicit language code
         inputs = processor(
-            waveform,
+            waveform.squeeze().numpy(),  # Convert to numpy array
             sampling_rate=sample_rate,
             return_tensors="pt",
-            language="rw",  # Explicitly set Kinyarwanda
-            task="transcribe"  # Force transcription mode
+            language="rw",
+            task="transcribe"
         )
         
         # Generate transcription
